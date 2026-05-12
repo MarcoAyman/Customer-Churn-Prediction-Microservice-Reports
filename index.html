@@ -168,6 +168,44 @@ html,body{height:100%;background:var(--bg0);color:var(--text0);font-family:var(-
 .cat-rate-val{width:34px;text-align:right;color:var(--text2);flex-shrink:0}
 .eda-global-img{width:100%;border-radius:8px;display:block;border:1px solid var(--border)}
 .cohort-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+
+/* ── Feature Engineering Tab ── */
+.fe-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.fe-tab{padding:6px 14px;border-radius:5px;font-family:var(--mono);font-size:10px;cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text1);transition:all .15s}
+.fe-tab:hover{background:var(--bg3);color:var(--text0)}
+.fe-tab.active{background:var(--green-dim);color:var(--green);border-color:rgba(63,185,80,.2)}
+.fe-panel{display:none}.fe-panel.active{display:block}
+.fe-tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:10px}
+.fe-tbl th{text-align:left;padding:7px 10px;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);border-bottom:1px solid var(--border);background:var(--bg1)}
+.fe-tbl td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.03);color:var(--text1);vertical-align:top;line-height:1.5}
+.fe-tbl tr:hover td{background:var(--bg3)}
+.fe-tbl td:first-child{font-weight:500;color:var(--text0)}
+.v-high{color:var(--blue);font-weight:600}
+.v-med{color:var(--orange);font-weight:600}
+.v-low{color:var(--text2)}
+.enc-target{background:var(--blue-dim);color:var(--blue);border-radius:3px;padding:1px 6px;font-size:9px;font-weight:600;white-space:nowrap}
+.enc-ohe{background:var(--bg4);color:var(--text1);border-radius:3px;padding:1px 6px;font-size:9px;white-space:nowrap}
+.enc-pass{background:var(--purple-dim);color:var(--purple);border-radius:3px;padding:1px 6px;font-size:9px;white-space:nowrap}
+.enc-drop{background:var(--red-dim);color:var(--red);border-radius:3px;padding:1px 6px;font-size:9px;white-space:nowrap}
+.enc-keep{background:var(--green-dim);color:var(--green);border-radius:3px;padding:1px 6px;font-size:9px;white-space:nowrap}
+.fe-formula{font-family:var(--mono);font-size:9px;color:var(--cyan);background:var(--bg1);border:1px solid var(--border);border-radius:4px;padding:2px 6px;display:inline-block;margin-top:2px}
+.fe-why{font-family:var(--mono);font-size:9px;color:var(--text2);line-height:1.5;margin-top:3px}
+.fe-why b{color:var(--orange)}
+.fe-why em{color:var(--blue)}
+.group-card{background:var(--bg1);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px}
+.group-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.rate-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-family:var(--mono);font-size:9px}
+.rate-bar-lbl{width:120px;flex-shrink:0;color:var(--text1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rate-bar-track{flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.rate-bar-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.rate-bar-val{width:38px;text-align:right;color:var(--text2);flex-shrink:0}
+.insight-box{background:var(--bg1);border-left:3px solid var(--orange);padding:10px 12px;border-radius:0 6px 6px 0;margin-bottom:10px;font-family:var(--mono);font-size:10px;color:var(--text1);line-height:1.6}
+.insight-box b{color:var(--text0)}
+.step-badge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-family:var(--mono);font-size:9px;font-weight:700;flex-shrink:0;margin-right:8px}
+.pipeline-step{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg1);margin-bottom:6px}
+.pipeline-step-body{flex:1;min-width:0}
+.pipeline-step-title{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text0);margin-bottom:3px}
+.pipeline-step-desc{font-family:var(--mono);font-size:9px;color:var(--text2);line-height:1.5}
 </style>
 </head>
 <body>
@@ -190,6 +228,10 @@ html,body{height:100%;background:var(--bg0);color:var(--text0);font-family:var(-
   <div class="nav-item" onclick="switchView('eda',this)">
     <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 0h1v15h15v1H0V0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07z"/></svg>
     EDA Dashboard
+  </div>
+  <div class="nav-item" onclick="switchView('fe',this)">
+    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/></svg>
+    Feature Engineering
   </div>
   <div class="nav-item" onclick="switchView('monitor',this)">
     <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3H0V3zm1 2h1v-1H1v1zm2 0h1v-1H3v1zm2 0h1v-1H5v1zM0 8v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8H0zm4 2h8v1H4v-1z"/></svg>
@@ -227,8 +269,8 @@ html,body{height:100%;background:var(--bg0);color:var(--text0);font-family:var(-
     <div class="flow-step fl-green">
       <div class="flow-step-num">02 // FEATURES</div>
       <div class="flow-step-title">Feature Engineering</div>
-      <div class="flow-step-desc">5 signal groups &middot; OHE &middot; ordinal &middot; RobustScale &middot; leakage guard &middot; save artifacts</div>
-      <span class="flow-step-tag tag-green">FeaturePipeline</span>
+      <div class="flow-step-desc">Cramér's V &rarr; target encode &middot; 5 signal groups &middot; stratified 70/15/15 split &middot; StandardScaler + OHE &middot; 38 features total</div>
+      <span class="flow-step-tag tag-green">FeatureEngineer</span>
     </div>
     <div class="flow-arrow"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg></div>
     <div class="flow-step fl-purple">
@@ -410,6 +452,340 @@ html,body{height:100%;background:var(--bg0);color:var(--text0);font-family:var(-
   </div>
 </div>
 
+<!-- FEATURE ENGINEERING -->
+<div class="view" id="view-fe">
+  <div class="view-header">
+    <div>
+      <div class="view-title">Feature Engineering</div>
+      <div class="view-sub">// STAGE 3.2 &middot; ENCODING DECISIONS &middot; SIGNAL GROUPS &middot; PREPROCESSING PIPELINE</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="badge badge-green">38 features &rarr; XGBoost</span>
+      <span class="badge badge-blue">17 engineered</span>
+      <span class="badge badge-orange">fit on train only</span>
+    </div>
+  </div>
+
+  <!-- KPI strip -->
+  <div class="g4" style="margin-bottom:16px">
+    <div class="card kpi-blue" style="padding:16px"><div class="kpi-label">Total features</div><div class="kpi-val">38</div><div class="kpi-sub">after preprocessing</div></div>
+    <div class="card kpi-green" style="padding:16px"><div class="kpi-label">Engineered</div><div class="kpi-val">17</div><div class="kpi-sub">5 groups + target encoded</div></div>
+    <div class="card kpi-purple" style="padding:16px"><div class="kpi-label">Training rows</div><div class="kpi-val">3,940</div><div class="kpi-sub">val=845 · test=845</div></div>
+    <div class="card kpi-orange" style="padding:16px"><div class="kpi-label">Churn rate</div><div class="kpi-val">16.84%</div><div class="kpi-sub">stratified across all 3 folds</div></div>
+  </div>
+
+  <!-- Sub-tabs -->
+  <div class="fe-tabs">
+    <div class="fe-tab active" onclick="feTab('overview',this)">&#9654; How we decided</div>
+    <div class="fe-tab" onclick="feTab('encoding',this)">Encoding decisions</div>
+    <div class="fe-tab" onclick="feTab('groups',this)">5 feature groups</div>
+    <div class="fe-tab" onclick="feTab('fate',this)">Column fate</div>
+    <div class="fe-tab" onclick="feTab('pipeline',this)">Pipeline flow</div>
+  </div>
+
+  <!-- PANEL: Overview / How we decided -->
+  <div class="fe-panel active" id="fe-panel-overview">
+    <div class="g2" style="margin-bottom:14px">
+      <div>
+        <div class="insight-box" style="border-color:var(--blue)">
+          <b>Step 1 — Cramér's V analysis on all 7 categorical features</b><br>
+          Cramér's V measures how strongly a categorical column predicts churn (0=none, 1=perfect).
+          We set a threshold of <em>V ≥ 0.15</em> to decide between target encoding and one-hot encoding.
+          Features above threshold have meaningfully different churn rates across their categories —
+          replacing them with those rates gives the model a direct risk signal.
+        </div>
+        <div class="insight-box" style="border-color:var(--green)">
+          <b>Step 2 — Cohen's d + Pearson r on numeric features</b><br>
+          Cohen's d measures the separation between churner and retained distributions.
+          Pearson r identifies correlated raw columns. When two features share high correlation
+          (e.g. <em>order_count ↔ coupon_used, r=0.62</em>), we create a ratio instead of keeping
+          both — <em>discount_dependency_ratio = coupon_used / order_count</em> — capturing
+          the independent signal and reducing multicollinearity.
+        </div>
+        <div class="insight-box" style="border-color:var(--orange)">
+          <b>Step 3 — Cohort analysis for binary flags</b><br>
+          Cohort analysis showed <em>new customers (tenure ≤ 6mo) churn at 32.4%</em> — 1.93× the baseline.
+          Even though this didn't clear the 2.0× hotspot threshold, the business signal is clear enough
+          to create an explicit <em>is_new_customer</em> binary flag. Loyal customers (24+mo) show 0.0% churn.
+        </div>
+        <div class="insight-box" style="border-color:var(--purple)">
+          <b>Step 4 — Training-serving skew prevention</b><br>
+          All parameters that require learning from data (churn rates, log-median, IQR cap) are fitted
+          on the <em>training fold only (3,940 rows)</em>. Val and test receive the same frozen parameters.
+          Recomputing on val/test would be data leakage — making evaluation metrics dishonest.
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-title ct-blue">&#9654; What needs fit() vs what doesn't</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--text2);margin-bottom:8px">
+            fit() learns statistics from training data. transform() applies them to any fold.
+          </div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--orange)">complain_risk</span><span class="stat-v" style="color:var(--text1)">fit() → churn rates {0:0.112, 1:0.313}</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--orange)">order_cat_risk</span><span class="stat-v" style="color:var(--text1)">fit() → churn rates per category</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--orange)">marital_risk</span><span class="stat-v" style="color:var(--text1)">fit() → churn rates per status</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--orange)">warehouse_risk</span><span class="stat-v" style="color:var(--text1)">fit() → log-median = 2.7081</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--orange)">embeddedness</span><span class="stat-v" style="color:var(--text1)">fit() → IQR cap = 12.0</span></div>
+          <div class="stat-row" style="margin-top:6px"><span class="stat-key" style="color:var(--green)">ratio features</span><span class="stat-v" style="color:var(--text1)">no fit() needed — pure math</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--green)">binary flags</span><span class="stat-v" style="color:var(--text1)">no fit() needed — fixed thresholds</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--green)">binned features</span><span class="stat-v" style="color:var(--text1)">no fit() needed — fixed bin edges</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title ct-orange">&#9654; Column transformation summary</div>
+          <div class="stat-row"><span class="stat-key">19 raw columns in</span><span class="stat-v" style="color:var(--blue)">from Supabase</span></div>
+          <div class="stat-row"><span class="stat-key">3 dropped</span><span class="stat-v" style="color:var(--red)">complain, order_cat, marital</span></div>
+          <div class="stat-row"><span class="stat-key">17 created</span><span class="stat-v" style="color:var(--green)">5 groups + 3 target-encoded</span></div>
+          <div class="stat-row"><span class="stat-key">9 OHE columns</span><span class="stat-v" style="color:var(--purple)">gender×2, payment×5, device×2</span></div>
+          <div class="stat-row"><span class="stat-key">38 features out</span><span class="stat-v" style="color:var(--orange)">to XGBoost</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: Encoding decisions -->
+  <div class="fe-panel" id="fe-panel-encoding">
+    <div class="insight-box" style="margin-bottom:14px">
+      <b>Decision rule:</b> Cramér's V ≥ 0.15 → target encoding (engineer_ordinal). V &lt; 0.15 → one-hot.
+      The threshold separates features where churn rates differ substantially across categories
+      from features where categories are roughly equivalent in churn behaviour.
+    </div>
+    <div class="g2" style="margin-bottom:14px">
+      <div>
+        <div class="card">
+          <div class="card-title ct-blue">&#9654; Cramér's V results → encoding decision</div>
+          <table class="fe-tbl">
+            <thead><tr><th>Feature</th><th>Cramér's V</th><th>Decision</th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td>complain</td><td><span class="v-high">0.250</span></td><td><span class="enc-target">target encode</span></td><td>V=0.25 ≥ 0.15 · 31.3% vs 11.2% churn</td></tr>
+              <tr><td>preferred_order_cat</td><td><span class="v-high">0.226</span></td><td><span class="enc-target">target encode</span></td><td>V=0.23 ≥ 0.15 · Mobile 27.5% vs Grocery 3.9%</td></tr>
+              <tr><td>marital_status</td><td><span class="v-high">0.183</span></td><td><span class="enc-target">target encode</span></td><td>V=0.18 ≥ 0.15 · Single 26.8% vs Married 11.6%</td></tr>
+              <tr><td>preferred_payment_mode</td><td><span class="v-med">0.096</span></td><td><span class="enc-ohe">one-hot</span></td><td>V=0.10 &lt; 0.15 · 3/5 categories near baseline</td></tr>
+              <tr><td>city_tier</td><td><span class="v-med">0.085</span></td><td><span class="enc-pass">passthrough</span></td><td>Already ordinal 1&lt;2&lt;3 · natural order exists</td></tr>
+              <tr><td>preferred_login_device</td><td><span class="v-low">0.051</span></td><td><span class="enc-ohe">one-hot</span></td><td>V=0.05 &lt; 0.15 · weak signal</td></tr>
+              <tr><td>gender</td><td><span class="v-low">0.029</span></td><td><span class="enc-ohe">one-hot</span></td><td>V=0.03 &lt; 0.15 · negligible signal</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-title ct-green">&#9654; Target encoding rates (from train fold only)</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--text2);margin-bottom:10px">
+            Rates computed from 3,940 training rows. Slightly different from EDA estimates (5,630 rows) — correct behaviour, no leakage.
+          </div>
+          <div style="margin-bottom:10px"><div style="font-family:var(--mono);font-size:9px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">complain</div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">0 (no complaint)</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:22%;background:var(--green)"></div></div><span class="rate-bar-val">11.2%</span></div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">1 (complained)</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:63%;background:var(--red)"></div></div><span class="rate-bar-val">31.3%</span></div>
+          </div>
+          <div style="margin-bottom:10px"><div style="font-family:var(--mono);font-size:9px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">preferred_order_cat</div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">Grocery</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:8%;background:var(--green)"></div></div><span class="rate-bar-val">3.9%</span></div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">Others</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:13%;background:var(--green)"></div></div><span class="rate-bar-val">6.5%</span></div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">Laptop & Acc.</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:21%;background:var(--blue)"></div></div><span class="rate-bar-val">10.3%</span></div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">Fashion</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:31%;background:var(--orange)"></div></div><span class="rate-bar-val">15.7%</span></div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">Mobile</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:55%;background:var(--red)"></div></div><span class="rate-bar-val">27.5%</span></div>
+          </div>
+          <div><div style="font-family:var(--mono);font-size:9px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">marital_status</div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">Married</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:23%;background:var(--green)"></div></div><span class="rate-bar-val">11.6%</span></div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">Divorced</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:29%;background:var(--blue)"></div></div><span class="rate-bar-val">14.5%</span></div>
+            <div class="rate-bar-row"><span class="rate-bar-lbl">Single</span><div class="rate-bar-track"><div class="rate-bar-fill" style="width:54%;background:var(--red)"></div></div><span class="rate-bar-val">26.8%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: 5 Feature Groups -->
+  <div class="fe-panel" id="fe-panel-groups">
+    <div class="insight-box" style="margin-bottom:14px">
+      <b>Justification:</b> Engineered features are created when the raw columns have either
+      moderate individual signal that can be strengthened by combining (ratio features),
+      or when non-linear structure exists in the data that the model can't learn from a
+      raw continuous value alone (binned tiers, interaction terms, binary flags).
+    </div>
+    <div class="group-card">
+      <div class="group-label" style="color:var(--red)">&#9654; Target-encoded replacements (3 features)</div>
+      <table class="fe-tbl">
+        <thead><tr><th>Feature</th><th>Formula</th><th>EDA justification</th></tr></thead>
+        <tbody>
+          <tr><td>complain_risk</td><td><span class="fe-formula">complain → {0: 0.112, 1: 0.313}</span></td><td class="fe-why">Cramér's V=0.250. Churn <b>3× higher</b> when customer complained. Binary flag alone loses the magnitude.</td></tr>
+          <tr><td>order_cat_risk</td><td><span class="fe-formula">order_cat → risk float 0.039–0.275</span></td><td class="fe-why">Cramér's V=0.226. <b>Mobile 27.5% vs Grocery 3.9%</b> — 7× spread. Captures category volatility directly.</td></tr>
+          <tr><td>marital_risk</td><td><span class="fe-formula">marital → {Single: 0.268, Married: 0.116}</span></td><td class="fe-why">Cramér's V=0.183. <b>Single customers churn 2.3× more</b> than married — lifecycle signal.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="group-card">
+      <div class="group-label" style="color:var(--orange)">&#9654; Group 1 — Financial Stress (3 features)</div>
+      <table class="fe-tbl">
+        <thead><tr><th>Feature</th><th>Formula</th><th>EDA justification</th></tr></thead>
+        <tbody>
+          <tr><td>discount_dependency_ratio</td><td><span class="fe-formula">coupon_used / (order_count + ε)</span></td><td class="fe-why"><em>r=0.62</em> between order_count and coupon_used. Ratio captures discount reliance independent of order volume. Creates signal where the individual features overlap.</td></tr>
+          <tr><td>cashback_per_order</td><td><span class="fe-formula">cashback_amount / (order_count + ε)</span></td><td class="fe-why">cashback_amount <em>d=−0.42</em> (churners get less cashback). Normalising by order_count removes the volume confound.</td></tr>
+          <tr><td>order_value_declining_flag</td><td><span class="fe-formula">1 if YoY hike &lt; 0</span></td><td class="fe-why">order_amount_hike <em>d=−0.019</em> (weak linear). Negatives preserved intentionally — a declining order value is a financial stress signal the model should see explicitly.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="group-card">
+      <div class="group-label" style="color:var(--blue)">&#9654; Group 2 — Service Dependency (3 features)</div>
+      <table class="fe-tbl">
+        <thead><tr><th>Feature</th><th>Formula</th><th>EDA justification</th></tr></thead>
+        <tbody>
+          <tr><td>platform_embeddedness_score</td><td><span class="fe-formula">(addr_capped × 0.4) + (devices × 0.6)</span></td><td class="fe-why">number_of_device d=+0.29, address d=+0.12. Both show <b>retained customers are more embedded</b>. Combined into one score — devices weighted 0.6 (stronger signal). Address capped at IQR upper (12.0, fitted on train).</td></tr>
+          <tr><td>is_cod_user</td><td><span class="fe-formula">1 if payment_mode == COD</span></td><td class="fe-why">COD churn rate <b>24.9% vs 16.84% overall</b>. payment_mode V=0.096 &lt; 0.15 → one-hot, but COD's individual lift (1.48×) warrants an explicit flag to make the signal visible to the model.</td></tr>
+          <tr><td>address_per_tenure_ratio</td><td><span class="fe-formula">n_address / (tenure + 1)</span></td><td class="fe-why">Raw address count favours long-tenure customers. Normalising by tenure isolates: a new customer with 5 addresses is more platform-embedded than a 3-year customer with 5.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="group-card">
+      <div class="group-label" style="color:var(--green)">&#9654; Group 3 — Engagement Decay (3 features)</div>
+      <table class="fe-tbl">
+        <thead><tr><th>Feature</th><th>Formula</th><th>EDA justification</th></tr></thead>
+        <tbody>
+          <tr><td>recency_risk_score</td><td><span class="fe-formula">day_since_last_order / (tenure + 1)</span></td><td class="fe-why">day_since_last_order <em>d=−0.42</em> — churners go longer without ordering. Dividing by tenure normalises: a 30-day gap means more for a 2-month customer than a 2-year customer.</td></tr>
+          <tr><td>order_frequency_normalized</td><td><span class="fe-formula">order_count / (tenure + 1)</span></td><td class="fe-why">order_count alone <em>d=−0.064</em> (negligible) because new and old customers have inherently different raw counts. Normalising isolates the frequency signal.</td></tr>
+          <tr><td>app_engagement_tier</td><td><span class="fe-formula">cut(hours, [0,1,3,∞]) → 0/1/2</span></td><td class="fe-why">hour_spend_on_app <em>d=+0.050</em> (negligible linear). Binning captures non-linear structure: the low-engagement (0–1hr) segment is the distinct risk tier.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="group-card">
+      <div class="group-label" style="color:var(--purple)">&#9654; Group 4 — Contract Risk (5 features)</div>
+      <table class="fe-tbl">
+        <thead><tr><th>Feature</th><th>Formula</th><th>EDA justification</th></tr></thead>
+        <tbody>
+          <tr><td>tenure_segment</td><td><span class="fe-formula">cut(tenure, [0,6,24,∞]) → 0/1/2</span></td><td class="fe-why">Cohort: new=<b>32.4%</b>, growing=8.2%, loyal=<b>0.0%</b> churn. Extreme non-linearity — raw tenure would make the model learn this curve slowly. Explicit bins make it immediate.</td></tr>
+          <tr><td>is_new_customer</td><td><span class="fe-formula">1 if tenure ≤ 6</span></td><td class="fe-why">Cohort lift=<b>1.93×</b> (32.4% vs 16.84% baseline). Separate from tenure_segment to let the model use both the continuous and discrete signals simultaneously.</td></tr>
+          <tr><td>silent_dissatisfaction_flag</td><td><span class="fe-formula">1 if score ≤ 3 AND complain == 0</span></td><td class="fe-why">The "silent churner" pattern. A dissatisfied customer who never complained is hard to detect from either feature alone. Combined flag surfaces this latent risk.</td></tr>
+          <tr><td>complaint_satisfaction_interaction</td><td><span class="fe-formula">complain × (6 − satisfaction_score)</span></td><td class="fe-why">Complained AND low satisfaction = highest risk. Produces 0 if no complaint regardless of satisfaction. Range 0–5: captures intensity, not just presence.</td></tr>
+          <tr><td>warehouse_distance_risk</td><td><span class="fe-formula">1 if log(warehouse) &gt; 2.7081</span></td><td class="fe-why">warehouse_to_home <em>d=+0.19</em>. EDA recommended log1p transform (right-skewed). Fitted log-median = 2.7081 from train only. Customers above median distance are flagged.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PANEL: Column Fate -->
+  <div class="fe-panel" id="fe-panel-fate">
+    <div class="insight-box" style="margin-bottom:14px">
+      <b>Reading this table:</b> "Engineer" = what FeatureEngineer does to the raw column.
+      "Preprocessor" = what PreprocessorBuilder does after engineering.
+      Dropped columns are replaced by superior engineered versions — no information is lost.
+    </div>
+    <div class="card">
+      <table class="fe-tbl">
+        <thead><tr><th>Raw column</th><th>EDA signal</th><th>FeatureEngineer</th><th>Preprocessor</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>tenure_months</td><td style="color:var(--blue)">d=−0.96 strong</td><td>Creates tenure_segment (0/1/2), is_new_customer, recency_risk_score, order_frequency_normalized, address_per_tenure_ratio</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>complain</td><td style="color:var(--blue)">V=0.250 moderate</td><td>Creates complain_risk (target encode), silent_dissatisfaction_flag, complaint_satisfaction_interaction</td><td>—</td><td><span class="enc-drop">DROPPED</span></td></tr>
+          <tr><td>preferred_order_cat</td><td style="color:var(--orange)">V=0.226 moderate</td><td>Creates order_cat_risk (target encode)</td><td>—</td><td><span class="enc-drop">DROPPED</span></td></tr>
+          <tr><td>marital_status</td><td style="color:var(--orange)">V=0.183 moderate</td><td>Creates marital_risk (target encode)</td><td>—</td><td><span class="enc-drop">DROPPED</span></td></tr>
+          <tr><td>day_since_last_order</td><td style="color:var(--orange)">d=−0.42 weak</td><td>Creates recency_risk_score</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>cashback_amount</td><td style="color:var(--orange)">d=−0.42 weak</td><td>Creates cashback_per_order</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>satisfaction_score</td><td style="color:var(--orange)">d=+0.28 weak*</td><td>Creates silent_dissatisfaction_flag, complaint_satisfaction_interaction</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>number_of_device_registered</td><td style="color:var(--orange)">d=+0.29 weak</td><td>Creates platform_embeddedness_score</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>warehouse_to_home</td><td style="color:var(--text2)">d=+0.19</td><td>Creates warehouse_distance_risk (log1p + median threshold)</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>number_of_address</td><td style="color:var(--text2)">d=+0.12</td><td>Creates platform_embeddedness_score, address_per_tenure_ratio</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>order_count</td><td style="color:var(--text2)">d=−0.064</td><td>Creates discount_dependency_ratio, order_frequency_normalized</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>coupon_used</td><td style="color:var(--text2)">d=+0.02</td><td>Creates discount_dependency_ratio (r=0.62 with order_count)</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>order_amount_hike</td><td style="color:var(--text2)">d=−0.019</td><td>Creates order_value_declining_flag (binary if &lt; 0)</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>hour_spend_on_app</td><td style="color:var(--text2)">d=+0.050</td><td>Creates app_engagement_tier (binned 0/1/2)</td><td>StandardScaler</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>gender</td><td style="color:var(--text2)">V=0.029</td><td>Pass through unchanged</td><td>OneHotEncoder → Female, Male</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>preferred_payment_mode</td><td style="color:var(--text2)">V=0.096</td><td>Pass through (is_cod_user flag created separately)</td><td>OneHotEncoder → 5 columns</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>preferred_login_device</td><td style="color:var(--text2)">V=0.051</td><td>Pass through unchanged</td><td>OneHotEncoder → Computer, MobilePhone</td><td><span class="enc-keep">KEPT</span></td></tr>
+          <tr><td>city_tier</td><td style="color:var(--text2)">V=0.085</td><td>Pass through (already ordinal 1&lt;2&lt;3)</td><td>StandardScaler</td><td><span class="enc-pass">PASSTHROUGH</span></td></tr>
+        </tbody>
+      </table>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--text2);margin-top:8px">* satisfaction_score d=+0.28 means churners score HIGHER — possible scale inversion in Kaggle dataset. Feature kept regardless — model learns the correct direction.</div>
+    </div>
+  </div>
+
+  <!-- PANEL: Pipeline flow -->
+  <div class="fe-panel" id="fe-panel-pipeline">
+    <div class="g2">
+      <div>
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-title ct-green">&#9654; Execution order</div>
+          <div class="pipeline-step">
+            <div class="step-badge" style="background:var(--blue-dim);color:var(--blue)">1</div>
+            <div class="pipeline-step-body">
+              <div class="pipeline-step-title">Load from Supabase</div>
+              <div class="pipeline-step-desc">5,630 rows × 19 cols · kaggle_churn_label IS NOT NULL</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge" style="background:var(--orange-dim);color:var(--orange)">2</div>
+            <div class="pipeline-step-body">
+              <div class="pipeline-step-title">Stratified split (70/15/15)</div>
+              <div class="pipeline-step-desc">train=3,940 · val=845 · test=845 · random_state=42 · all ~16.84% churn</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge" style="background:var(--purple-dim);color:var(--purple)">3</div>
+            <div class="pipeline-step-body">
+              <div class="pipeline-step-title">FeatureEngineer.fit(df_train)</div>
+              <div class="pipeline-step-desc">learns churn rates, log-median, IQR cap from train only · stores in memory · no columns created yet</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge" style="background:var(--green-dim);color:var(--green)">4</div>
+            <div class="pipeline-step-body">
+              <div class="pipeline-step-title">FeatureEngineer.transform(all 3 folds)</div>
+              <div class="pipeline-step-desc">applies frozen parameters · creates 17 new columns · drops 3 originals · ~31 columns per fold</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge" style="background:var(--purple-dim);color:var(--purple)">5</div>
+            <div class="pipeline-step-body">
+              <div class="pipeline-step-title">PreprocessorBuilder.fit(X_train_engineered)</div>
+              <div class="pipeline-step-desc">StandardScaler learns mean+std of numeric cols · OHE learns categories · from train only</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge" style="background:var(--green-dim);color:var(--green)">6</div>
+            <div class="pipeline-step-body">
+              <div class="pipeline-step-title">PreprocessorBuilder.transform(all 3 folds)</div>
+              <div class="pipeline-step-desc">scales numerics using train mean+std · OHE encodes categoricals · 38 features out</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge" style="background:var(--orange-dim);color:var(--orange)">7</div>
+            <div class="pipeline-step-body">
+              <div class="pipeline-step-title">Save artifacts</div>
+              <div class="pipeline-step-desc">preprocessor.pkl · feature_names.json · feature_engineering_config.json · X/y splits as .npy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-title ct-orange">&#9654; Split statistics</div>
+          <div class="stat-row"><span class="stat-key">Strategy</span><span class="stat-v" style="color:var(--blue)">stratified on churn label</span></div>
+          <div class="stat-row"><span class="stat-key">Random state</span><span class="stat-v">42 (frozen)</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--green)">Train</span><span class="stat-v" style="color:var(--green)">3,940 rows · 16.85% churn</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--orange)">Val</span><span class="stat-v" style="color:var(--orange)">845 rows · 16.80% churn</span></div>
+          <div class="stat-row"><span class="stat-key" style="color:var(--red)">Test</span><span class="stat-v" style="color:var(--red)">845 rows · 16.80% churn · LOCKED</span></div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--text2);margin-top:10px;line-height:1.6">
+            Test set touched ONCE at final evaluation only. Val used only for threshold selection after training.
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-title ct-purple">&#9654; fit() vs transform()</div>
+          <div class="stat-row"><span class="stat-key">fit() purpose</span><span class="stat-v" style="color:var(--purple)">LEARN statistics from data</span></div>
+          <div class="stat-row"><span class="stat-key">fit() runs on</span><span class="stat-v">train only — 3,940 rows</span></div>
+          <div class="stat-row"><span class="stat-key">fit() output</span><span class="stat-v" style="color:var(--text2)">nothing visible — stores in memory</span></div>
+          <div class="stat-row"><span class="stat-key">transform() purpose</span><span class="stat-v" style="color:var(--green)">APPLY stored stats → new columns</span></div>
+          <div class="stat-row"><span class="stat-key">transform() runs on</span><span class="stat-v">train + val + test separately</span></div>
+          <div class="stat-row"><span class="stat-key">fit on val/test =</span><span class="stat-v" style="color:var(--red)">DATA LEAKAGE</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title ct-blue">&#9654; Artifacts produced</div>
+          <div class="art-item"><div style="font-size:14px;flex-shrink:0">&#128230;</div><div><div class="art-name">preprocessor.pkl</div><div class="art-desc">sklearn Pipeline · fit on train only · used at inference</div></div></div>
+          <div class="art-item"><div style="font-size:14px;flex-shrink:0">&#128203;</div><div><div class="art-name">feature_names.json</div><div class="art-desc">38 ordered feature names · training ↔ inference contract</div></div></div>
+          <div class="art-item"><div style="font-size:14px;flex-shrink:0">&#128202;</div><div><div class="art-name">feature_engineering_config.json</div><div class="art-desc">Fitted thresholds + encoding rates · prevents training-serving skew</div></div></div>
+          <div class="art-item"><div style="font-size:14px;flex-shrink:0">&#9889;</div><div><div class="art-name">X/y splits (.npy)</div><div class="art-desc">X_train, X_val, X_test, y_train, y_val, y_test</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MONITOR -->
 <div class="view" id="view-monitor">
   <div class="view-header">
@@ -463,6 +839,13 @@ function switchView(id, el) {
   if(id==='structure') initTree();
 }
 
+function feTab(name, el) {
+  document.querySelectorAll('.fe-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.fe-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('fe-panel-'+name).classList.add('active');
+}
+
 // TREE
 const TD=[
   {n:'config/',t:'d',c:[
@@ -470,8 +853,37 @@ const TD=[
     {n:'feature_config.py',t:'f',cls:[{n:'FeatureGroupConfig',m:['raw_columns_per_group','engineered_feature_names','drop_after_engineering']},{n:'CategoryChurnRates',m:['mapping: dict[str, int]']}]},
   ]},
   {n:'eda/',t:'d',c:[
-    {n:'analyzer.py',t:'f',cls:[{n:'EDAAnalyzer',m:['load_data(path)','class_balance_report()','null_audit()','outlier_audit()','categorical_churn_rates(col)','compute_category_volatility_map()','save_reference_distribution(X)']}]},
-    {n:'visualizer.py',t:'f',cls:[{n:'EDAVisualizer',m:['plot_class_distribution()','plot_correlation_heatmap()','plot_churn_by_category()','render_full_eda_report()']}]},
+    {n:'analyzers/',t:'d',c:[
+      {n:'base.py',t:'f',cls:[{n:'FeatureAnalyzer',m:['analyze()','save(output_dir)','_churn_split()']}]},
+      {n:'categorical.py',t:'f',cls:[{n:'CategoricalAnalyzer',m:['_analyze()','_plot_distribution()','_plot_stacked_churn()','_build_recommendation()']}]},
+      {n:'numeric.py',t:'f',cls:[{n:'NumericAnalyzer',m:['_analyze()','_cohens_d()','_outlier_report()','_plot_histogram()','_plot_box_by_churn()']}]},
+    ]},
+    {n:'dataset/',t:'d',c:[
+      {n:'loader.py',t:'f',cls:[{n:'TrainingDataLoader',m:['load()']}]},
+      {n:'sanity.py',t:'f',cls:[{n:'SanityChecker',m:['check()','save(path)']}]},
+    ]},
+    {n:'global_analysis/',t:'d',c:[
+      {n:'class_balance.py',t:'f',cls:[{n:'ClassBalanceAnalyzer',m:['analyze()','save(path)']}]},
+      {n:'correlation.py',t:'f',cls:[{n:'CorrelationAnalyzer',m:['analyze()','_compute_vif()','_extract_pairs()']}]},
+      {n:'cohorts.py',t:'f',cls:[{n:'CohortAnalyzer',m:['analyze()','_analyze_single(spec)']}]},
+    ]},
+    {n:'reporting/',t:'d',c:[
+      {n:'narrator.py',t:'f',cls:[{n:'StatisticalNarrator',m:['cohens_d(d)','cramers_v(v)','mann_whitney(p,u)','chi_squared(p,stat,dof)','distribution_shape()','outliers()','category_churn_rates()']}]},
+      {n:'plot_saver.py',t:'f',cls:[{n:'PlotSaver',m:['save(fig,name)']}]},
+      {n:'manifest_writer.py',t:'f',cls:[{n:'ManifestWriter',m:['add(path,caption)','write(output_path)']}]},
+    ]},
+    {n:'eda_orchestrator.py',t:'f',cls:[{n:'SupabaseEDA',m:['run()','_write_category_churn_rates()','_build_summary()']}]},
+  ]},
+  {n:'feature_eng/',t:'d',c:[
+    {n:'engineer.py',t:'f',cls:[{n:'FeatureEngineer',m:['fit(df_train)','transform(df)','fit_transform(df_train)','save_config(path)','_apply_target_encoding()','_group1_financial_stress()','_group2_service_dependency()','_group3_engagement_decay()','_group4_contract_risk()']}]},
+    {n:'pipeline.py',t:'f',cls:[
+      {n:'StratifiedSplitter',m:['split(df)','save_split_summary()']},
+      {n:'PreprocessorBuilder',m:['fit(X_train)','transform(X)','fit_transform(X_train)','save()','feature_names']},
+    ]},
+    {n:'orchestrator.py',t:'f',cls:[
+      {n:'FeatureEngReporter',m:['save_feature_summary()','sync_to_reports_repo()']},
+      {n:'FeatureEngPipeline',m:['run()']},
+    ]},
   ]},
   {n:'features/',t:'d',c:[
     {n:'pipeline.py',t:'f',cls:[{n:'FeaturePipeline',m:['fit_transform(df)','transform(df)','_run_group_engineers(df)','save(path)','load(path)']}]},
